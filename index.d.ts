@@ -69,46 +69,6 @@ interface SmartcastGetExecute {
     execute(): Promise<any>;
 }
 
-interface SmartcastSettings {
-    picture: SmartcastSettingsPicture;
-    audio: SmartcastGet;
-    timers: SmartcastTimers;
-    network: SmartcastGet;
-    channels: SmartcastGet;
-    closedCaptions: SmartcastGet;
-    devices: SmartcastGet;
-    system: SmartcastSettingsSystem;
-    mobileDevices: SmartcastGet;
-    cast: SmartcastGet;
-}
-
-interface SmartcastSettingsPicture {
-    get(): Promise<any>;
-    size: SmartcastGet;
-    position: SmartcastGet;
-    modeEdit: SmartcastGet;
-    mode: SmartcastGetSet;
-    color: SmartcastSettingsPictureColor;
-    calibrationTests: SmartcastGet;
-}
-
-interface SmartcastSettingsPictureColor {
-    calibration: SmartcastGet;
-    tuner: SmartcastGet;
-}
-
-interface SmartcastSettingsSystem {
-    get(): Promise<any>;
-    information: SmartcastSettingsSystemInformation;
-}
-
-interface SmartcastSettingsSystemInformation {
-    get(): Promise<any>;
-    tv: SmartcastGet;
-    tuner: SmartcastGet;
-    network: SmartcastGet;
-    uli: SmartcastGet;
-}
 
 declare namespace smartcast {
     export interface Device {
@@ -119,7 +79,6 @@ declare namespace smartcast {
         pairing: SmartcastPairing;
         input: SmartcastInput;
         control: SmartcastControl;
-        settings: SmartcastSettings;
     }
 
     export interface Discovery {
