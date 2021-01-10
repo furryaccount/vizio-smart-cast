@@ -72,20 +72,12 @@ interface SmartcastGetExecute {
 
 declare namespace smartcast {
     export interface Device {
-        discover: (success: (discovery: Discovery) => void, error?: (error: any) => void, timeout?: number) => void;
         new(ip: string, authKey?: string): Device;
         
         power: SmartcastPower;
         pairing: SmartcastPairing;
         input: SmartcastInput;
         control: SmartcastControl;
-    }
-
-    export interface Discovery {
-        ip: string;
-        name: string;
-        manufacturer: string;
-        model: string;
     }
 }
 
