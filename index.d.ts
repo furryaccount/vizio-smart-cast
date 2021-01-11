@@ -31,6 +31,7 @@ interface SmartcastControlVolume {
     mute(): Promise<any>;
     unmute(): Promise<any>;
     toggleMute(): Promise<any>;
+    getMuteState(): Promise<any>;
 }
 
 interface SmartcastControlInput {
