@@ -199,6 +199,7 @@ let SMARTCAST = function smartcast(host, authKey) {
                 });
             },
             set: (value) => {
+                // TODO: this is broken
                 return new Promise((resolve, reject) => {
                     if (typeof value !== 'number') {
                         reject('value must be a number');
@@ -206,25 +207,20 @@ let SMARTCAST = function smartcast(host, authKey) {
                     if (value < 0 || value > 100) {
                         reject('value is out of range, please enter a number between 0 to 100 inclusive');
                     }
-                    this.settings.audio.get().then((settings) => {
-                        let volume = settings.ITEMS.find(i => i.CNAME === 'volume')
-                        if (!volume) {
-                            reject('no volume setting found');
-                            return;
-                        }
-
+                    this.control.volume.get().then(values => {
+                        console.log(values)
                         let data = {
                             REQUEST: 'MODIFY',
-                            HASHVAL: volume.HASHVAL,
+                            HASHVAL: values.ITEMS[0].HASHVAL,
                             VALUE: Math.round(value)
                         };
-                        sendRequest('put', host + '/menu_native/dynamic/tv_settings/audio/volume', _authKey, data).then(resolve).catch(reject)
+                        sendRequest('put', host + '/menu_native/dynamic/audio_settings/audio/volume', _authKey, data).then(resolve).catch(reject)
                     }).catch(reject);
                 });
             },
             getMuteState: () => {
                 return new Promise((resolve) => {
-                    sendRequest('get', host + '/menu_native/dynamic/tv_settings/audio/mute', _authKey).then(resolve)
+                    sendRequest('get', host + '/menu_native/dynamic/audio_settings/audio/mute', _authKey).then(resolve)
                 });
             },
             unmute: () => {
